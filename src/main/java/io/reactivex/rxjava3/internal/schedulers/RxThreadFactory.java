@@ -73,7 +73,8 @@ public final class RxThreadFactory extends AtomicLong implements ThreadFactory {
 //        }
 
         String name = nameBuilder.toString();
-        Thread t = nonBlocking ? new RxCustomThread(r, name) : new Thread(r, name);
+        //        Thread t = nonBlocking ? new RxCustomThread(r, name) : new Thread(r, name);
+        Thread t = Thread.newThread(name, Thread.VIRTUAL, r);
         t.setPriority(priority);
         t.setDaemon(true);
         return t;
